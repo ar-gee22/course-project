@@ -3,120 +3,87 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import NavBar from './NavBar.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Director from './Director.jsx'
+import Films from './Films.jsx'
+import Footer from './Footer.jsx'
+import { TypeAnimation } from 'react-type-animation'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+  const pageStyle = {
+    textAlign: 'left',
+    padding: '0 40px'
+  }
 
-      <div className="ticks"></div>
+  const titleStyle = {
+    textAlign: 'center'
+  }
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  const sStyle = {
+    maxWidth: 900,
+    margin: '0 auto'
+  }
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  const hStyle = {
+    textTransform: 'uppercase',
+    letterSpacing: '0.4em',
+    textAlign: 'justify',
+    textAlignLast: 'justify'
+  }
+
+  const gradientStyle = {
+    fontSize: '2em',
+    display: 'block',
+    marginBottom: 5,
+    lineHeight: 1.3,
+    paddingBottom: '0.1em',
+    background: 'linear-gradient(90deg, #ff512f, #f09819, #dd2476)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    color: 'transparent'
+  }
+
+  return <div>
+    <title>Heavy Film</title>
+    <NavBar></NavBar>
+
+    <div style={pageStyle}>
+      <div  style={titleStyle}>
+        
+        <h1><TypeAnimation
+          sequence={['Heavy Film', 2000]}
+          speed={10}
+          repeat={1}
+          style={gradientStyle}
+        /></h1>
+
+        <p style={{marginBottom: 50}}>Stories in film, and the artists who make them</p>
+        
+      </div>
+      <Director
+        name="Paul Thomas Anderson"
+        info={["Paul Thomas Anderson (born June 26, 1970), also known by his initials PTA, is an American filmmaker. ",
+        "Often described as one of the preeminent filmmakers of his generation, he is the recipient of numerous accolades, including three Academy Awards, ",
+        "three Golden Globe Awards and four BAFTAs, as well as a nomination for a Grammy Award. He is the only person to have won the Academy Award for Best ", 
+        "Director and directorial prizes at Europe's three major film festivals: Cannes Film Festival, ", 
+        "Venice Film Festival, and the Berlin International Film Festival.",
+        "\n\nHeavy Film recommends Anderson's There Will Be Blood, as it stands to be one of the best American films of the 21st century."
+      ]}
+        imageUrl="/images/PTA.png"
+        imageAlt="Paul Thomas Anderson"
+      />
+      <div style={sStyle}>
+        <h2 style={hStyle}>The Works of Paul Thomas Anderson</h2>
+        <Films titles={['There Will Be Blood', 'One Battle After Another', 'Magnolia', 'Phantom Thread']} />
+      </div>
+    </div>
+    <Footer></Footer>
+  </div>;
+
 }
 
 export default App
