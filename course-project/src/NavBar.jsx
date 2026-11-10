@@ -7,11 +7,11 @@ function NavBar() {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="">HEAVY FILM</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">HEAVY FILM</Navbar.Brand>
                 <Nav classname="me-auto">
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/films">Films</Nav.Link>
-                    <Nav.Link href="">Game</Nav.Link>
+                    <Nav.Link as={Link} to="/game">Game</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

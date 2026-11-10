@@ -1,8 +1,5 @@
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Director from './Director.jsx'
 import Films from './Films.jsx'
-import Footer from './Footer.jsx'
 import { TypeAnimation } from 'react-type-animation'
 
 
