@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Alert from 'react-bootstrap/Alert'
+import FilmCard from './FilmCard.jsx'
 
 function FilmsPage() {
     const [films, setFilms] = useState([]) //Elokuvalista
@@ -94,8 +95,7 @@ function FilmsPage() {
     const pageStyle = { maxWidth: 1100, margin: '0 auto', padding: '0 40px 40px' }
     const formStyle = { display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 30 }
     const gridStyle = { display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'center' }
-    const cardStyle = { width: 180, textAlign: 'center', cursor: 'pointer' }
-    const posterStyle = { width: '100%', height: 'auto', borderRadius: 12 }
+    
 
     return (
         <div style={pageStyle}>
@@ -118,17 +118,7 @@ function FilmsPage() {
 
             <div style={gridStyle}>
                 {films.map(film => (
-                    <div key={film.id} style={cardStyle} onClick={() => setSelected(film)}>
-                        {film.poster_path && (
-                            <img
-                                src={`https://image.tmdb.org/t/p/w342${film.poster_path}`}
-                                alt={film.title}
-                                style={posterStyle}
-                            />
-                        )}
-                        <h4 style={{ fontSize: 16, marginTop: 8 }}>{film.title}</h4>
-                        <p>{film.release_date?.slice(0, 4)}</p>
-                    </div>
+                    <FilmCard key={film.id} film={film} onClick={setSelected} />
                 ))}
             </div>
 

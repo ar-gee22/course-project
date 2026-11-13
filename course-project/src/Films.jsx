@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import FilmCard from './FilmCard.jsx'
 
 function Films({titles}) {
     const [films, setFilms] = useState([])
@@ -39,33 +40,14 @@ function Films({titles}) {
         justifyContent: 'space-between'
     }
 
-    const cardStyle = {
-        width: 200,
-        textAlign: 'center'
-    }
-
-    const posterStyle = {
-        width: '100%',
-        height: 'auto',
-        borderRadius: 12
-    }
+    
 
     return (
         <div>
             {error && <Alert variant="danger">{error}</Alert>}
             <div style={listStyle}> 
-            
                 {films.map(film => (
-                    <div key={film.id} style={cardStyle}>
-                        {film.poster_path && (
-                            <img src= {`https://image.tmdb.org/t/p/w342${film.poster_path}`} 
-                            alt={film.title}
-                            style={posterStyle}
-                        />
-                        )}
-                        <h4 style ={{ fontSize: 16, marginTop: 8 }}> {film.title}</h4>
-                        <p>({film.release_date?.slice(0,4)})</p>
-                    </div>
+                    <FilmCard key={film.id} film={film} />
                 ))}
             </div>
         </div>
