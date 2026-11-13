@@ -68,7 +68,7 @@ function HomePage() {
                     "Venice Film Festival, and the Berlin International Film Festival.",
                     "\n\nHeavy Film recommends Anderson's There Will Be Blood, as it stands to be one of the best American films of the 21st century."
                 ]}
-                imageUrl="/images/PTA.png"
+                imageUrl={`${import.meta.env.BASE_URL}images/PTA.png`}
                 imageAlt="Paul Thomas Anderson"
             />
             <div style={sStyle}>
