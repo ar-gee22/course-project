@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Alert from 'react-bootstrap/Alert'
+import { FaStar, FaRedo } from 'react-icons/fa'
 
 // Arpoo kaksi eri leffaa, joilla eri arvosanat (siis ei tasureita)
 function pickPair(pool) {
@@ -111,7 +112,7 @@ function GamePage() {
                             />
                             <h4 style={{ fontSize: 18, marginTop: 10 }}>{film.title}</h4>
                             <p style={{ fontSize: 28, minHeight: 40 }}>
-                                {revealed ? film.vote_average.toFixed(1) : '?'}
+                                {revealed ? <><FaStar color="#f5c518" aria-hidden="true" /> {film.vote_average.toFixed(1)}</> : '?'}
                             </p>
                         </button>
                     )
@@ -125,7 +126,9 @@ function GamePage() {
             {gameOver && (
                 <div>
                     <h3>Game over! Final score: {score}</h3>
-                    <button className="btn btn-dark" onClick={handleRestart}>Play again</button>
+                    <button className="btn btn-dark d-inline-flex align-items-center gap-2" onClick={handleRestart}>
+                        <FaRedo aria-hidden="true" /> Play again
+                    </button>
                 </div>
             )}
         </div>

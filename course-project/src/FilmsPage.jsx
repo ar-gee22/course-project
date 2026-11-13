@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Alert from 'react-bootstrap/Alert'
 import FilmCard from './FilmCard.jsx'
+import { FaSearch } from 'react-icons/fa'
 
 function FilmsPage() {
     const [films, setFilms] = useState([]) //Elokuvalista
@@ -111,7 +112,9 @@ function FilmsPage() {
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                 />
-                <button type="submit" className="btn btn-dark">Search</button>
+                <button type="submit" className="btn btn-dark d-flex align-items-center gap-2">
+                    <FaSearch aria-hidden="true" /> Search
+                </button>
             </form>
 
             {error && <Alert variant="danger">{error}</Alert>}
