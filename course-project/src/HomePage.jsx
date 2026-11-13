@@ -23,7 +23,8 @@ function HomePage() {
 
     const hStyle = {
         textTransform: 'uppercase',
-        letterSpacing: '0.4em',
+        letterSpacing: 'clamp(0.05em, 1.5vw, 0.4em)',
+        fontSize: 'clamp(12px, 3vw, 18px)',
         textAlign: 'justify',
         textAlignLast: 'justify'
     }

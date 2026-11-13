@@ -23,7 +23,8 @@ function Director(props) {
         textTransform: 'uppercase',
         textAlign: 'justify',
         textAlignLast: 'justify',
-        letterSpacing: '0.05em'
+        letterSpacing: 'clamp(0.05em, 1.5vw, 0.3em)',
+        fontSize: 'clamp(12px, 3vw, 18px)'
     }
 
     const imgStyle = {
