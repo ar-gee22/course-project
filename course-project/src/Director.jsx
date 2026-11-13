@@ -4,12 +4,17 @@ function Director(props) {
 
     const style = {
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         gap: 20,
         maxWidth: 900,
         margin: '0 auto',
         marginBottom: 50
+    }
+
+    const textStyle = {
+        flex: '1 1 300px'
     }
 
      const titleStyle = {
@@ -23,8 +28,10 @@ function Director(props) {
 
     const imgStyle = {
         width: 250,
+        maxWidth: '100%',
         height: 'auto',
-        borderRadius: 16
+        borderRadius: 16,
+        margin: '0 auto'
     }
 
 
@@ -32,7 +39,7 @@ function Director(props) {
         <div>
             <h1 style={titleStyle}>Weekly Visionary</h1>
             <div style={style}>
-                <div>
+                <div style = {textStyle}>
                 <h2>{props.name}</h2>
                 <p style={{ whiteSpace: 'pre-line' }}>{props.info}</p>
                 </div>
