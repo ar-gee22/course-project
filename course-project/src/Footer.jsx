@@ -3,7 +3,7 @@ function Footer() {
         textAlign: 'center',
         padding: '20px 0',
         marginTop: 40,
-        borderTop: '1px solid #e5e4e7',
+        borderTop: '1px solid var(--border)',
         fontSize: 14
     }
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import FilmCard from './FilmCard.jsx'
+import Alert from 'react-bootstrap/Alert'
 
 function Films({titles}) {
     const [films, setFilms] = useState([])

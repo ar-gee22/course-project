@@ -7,7 +7,7 @@ import { FaHome, FaFilm, FaGamepad } from 'react-icons/fa'
 function NavBar() {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
-            <Container fluid>
+            <Container style={{maxWidth:1000}}>
                 <Navbar.Brand as={Link} to="/">HEAVY FILM</Navbar.Brand>
                 <Nav className="ms-auto flex-row gap-3">
                     <Nav.Link as={Link} to="/" className="d-flex align-items-center gap-2">
