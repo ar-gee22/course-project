@@ -1,16 +1,23 @@
-# React + Vite
+Heavy Film
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live site: https://ar-gee22.github.io/course-project/#/
+Repository: https://github.com/ar-gee22/course-project
 
-Currently, two official plugins are available:
+Instructions:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Clone the repository, and go to the project folder with package.json:
+        git clone https://github.com/ar-gee22/course-project.git
+        cd course-project
+        cd course-project
 
-## React Compiler
+- Install dependencies:
+        npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Get a free API key from https://www.themoviedb.org/settings/api and create a .env file in the same folder where package.json is. 
+- Put this into the .env file: 
+        VITE_TMDB_KEY=your_api_key_here
 
-## Expanding the ESLint configuration
+- npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Open localhost
+- The app needs the .env file. If you change it, restart the server.
