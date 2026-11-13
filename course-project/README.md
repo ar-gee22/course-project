@@ -4,6 +4,8 @@ Live site: https://ar-gee22.github.io/course-project/#/
 Repository: https://github.com/ar-gee22/course-project
 
 Instructions:
+- In the version I sent on Moodle, my TMDB API key is there, so you don't need to get your own.
+
 
 - Clone the repository, and go to the project folder with package.json:
         
