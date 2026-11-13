@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import Alert from 'react-bootstrap/Alert'
 
 function FilmsPage() {
     const [films, setFilms] = useState([]) //Elokuvalista
@@ -13,6 +14,8 @@ function FilmsPage() {
 
     const requestKey = `${search}|${page}` //Hakusana + sivunumero
     const loading = loadedFor !== requestKey //Lataus on kesken, kun ladattu haku ei vastaa haluttua hakua
+    const [error, setError] = useState(null)
+    const [detailsError, setDetailsError] = useState(false)
 
     useEffect(() => {
         const key = import.meta.env.VITE_TMDB_KEY
@@ -22,16 +25,26 @@ function FilmsPage() {
 
         let ignore = false
 
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
+        async function loadFilms() {
+            try {
+                const res = await fetch(url)
+                if (!res.ok) throw new Error(`TMDB responded with ${res.status}`)
+                const data = await res.json()
                 if (ignore) return
-                setFilms(prev => page === 1 ? data.results : [...prev, ...data.results]) //Sivu 1: korvaa lista, muuten uudet vanhojen perään
-                setTotalPages(data.total_pages)
-                setLoadedFor(`${search}|${page}`)
-            })
-            .catch(err => console.error(err))
 
+                setFilms(prev => page === 1 ? data.results : [...prev, ...data.results])
+                setTotalPages(data.total_pages)
+                setError(null)
+            } catch (err) {
+                if (ignore) return
+                console.error(err)
+                setError('Could not load films. Try again later.')
+            } finally {
+                if (!ignore) setLoadedFor (`${search}|${page}`)
+            }
+        }
+
+        loadFilms()
         return () => { ignore = true } //Tämä estää vanhan, hitaamman haun saapumista uuden jälkeen (ylikirjoittaisi sen)
     }, [search, page])
 
@@ -42,13 +55,24 @@ function FilmsPage() {
         const key = import.meta.env.VITE_TMDB_KEY
         let ignore = false
 
-        fetch(`https://api.themoviedb.org/3/movie/${selected.id}?api_key=${key}&append_to_response=credits`)
-            .then(res => res.json())
-            .then(data => {
-                if (!ignore) setDetails(data)
-            })
-            .catch(err => console.error(err))
+        async function loadDetails() {
+            try {
+                const res = await fetch(`https://api.themoviedb.org/3/movie/${selected.id}?api_key=${key}&append_to_response=credits`)
+                if (!res.ok) throw new Error(`TMDB responded with ${res.status}`)
+                const data = await res.json()
+                if (ignore) return
 
+                setDetails(data)
+                setDetailsError(false)
+            } catch (err) {
+                if (ignore) return
+                console.error(err)
+                setDetailsError(true)
+            }
+        }
+        
+        
+        loadDetails()
         return () => { ignore = true }
     }, [selected])
 
@@ -90,6 +114,8 @@ function FilmsPage() {
                 <button type="submit" className="btn btn-dark">Search</button>
             </form>
 
+            {error && <Alert variant="danger">{error}</Alert>}
+
             <div style={gridStyle}>
                 {films.map(film => (
                     <div key={film.id} style={cardStyle} onClick={() => setSelected(film)}>
@@ -107,6 +133,11 @@ function FilmsPage() {
             </div>
 
             {loading && <p style={{ textAlign: 'center' }}>Loading...</p>}
+
+            {!loading && !error && films.length === 0 && (
+                <p style={{ textAlign: 'center' }}>No films found.</p>
+            )}
+
 
             {!loading && page < totalPages && (
                 <div style={{ textAlign: 'center', marginTop: 30 }}>
@@ -126,7 +157,7 @@ function FilmsPage() {
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <p><strong>Director:</strong> {detailsReady ? (directors || 'Unknown') : 'Loading...'}</p>
+                            <p><strong>Director:</strong> {detailsError ? 'Could not load' : detailsReady ? (directors || 'Unknown') : 'Loading...'}</p>
                             <p style={{ marginTop: 12 }}>
                                 {selected.overview || 'No description available.'}
                             </p>

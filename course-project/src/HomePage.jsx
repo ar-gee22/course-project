@@ -2,6 +2,8 @@ import Director from './Director.jsx'
 import Films from './Films.jsx'
 import { TypeAnimation } from 'react-type-animation'
 
+const FILM_TITLES = ['There Will Be Blood', 'One Battle After Another', 'Magnolia', 'Phantom Thread']
+
 
 function HomePage() {
 
@@ -70,7 +72,7 @@ function HomePage() {
             />
             <div style={sStyle}>
                 <h2 style={hStyle}>The Works of Paul Thomas Anderson</h2>
-                <Films titles={['There Will Be Blood', 'One Battle After Another', 'Magnolia', 'Phantom Thread']} />
+                <Films titles={FILM_TITLES} />
             </div>
         </div>
 
